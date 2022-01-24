@@ -38,7 +38,9 @@ const App: React.FC = () => {
   }, [])
 
 
-  
+  function roma(inputTitle: string) {
+    setTitle(inputTitle)
+  }
 
 
   if (error) {
@@ -50,11 +52,8 @@ const App: React.FC = () => {
       <div className="wrapper">
 
         
-        <div className="search-bar">
-          <input type="text" value={title} placeholder="Enter Post Title" className="input-search" onChange={(e) => {setTitle(e.target.value); console.log(e.target.value)}}/>   
-        </div>
-
-
+        <EmojiSearch input={title} onChangeInput={roma}></EmojiSearch>
+        
         {/* <EmojiSearch input='input' onChange={updateInput}></EmojiSearch> */}
         <EmojiContainer title={title} emojiList={items}></EmojiContainer>
         

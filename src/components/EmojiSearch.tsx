@@ -6,10 +6,10 @@ import Data from '../data/data.json'
 
 interface EmojiSearchProps {
   input: string
-  // onChange(input: string): void
+  onChangeInput(input: string): void
 }
 
-const EmojiSearch: React.FC<EmojiSearchProps> = (input) => {
+const EmojiSearch: React.FC<EmojiSearchProps> = ({input, onChangeInput}) => {
 
     // const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     //   input.onChange(event.target.value)
@@ -17,7 +17,11 @@ const EmojiSearch: React.FC<EmojiSearchProps> = (input) => {
     // }
      
     return (
-      <div></div>
+        <div className="search-bar">
+          <input type="text" value={input} placeholder="Enter Post Title" className="input-search" onChange={(e) => {onChangeInput(e.target.value)}}/>   
+        </div>
+
+      
     )
 }
 
