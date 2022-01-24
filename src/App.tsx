@@ -14,7 +14,8 @@ export interface IEmoji {
 
 const App: React.FC = () => {
 
-  // const [search, setSearch] = useState('');
+  const [title, setTitle] = useState<string>('')
+
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -37,14 +38,7 @@ const App: React.FC = () => {
   }, [])
 
 
-  const updateInput = async (input: string) => {
-    const filtered = items.filter(emoji => {
-      return ( emoji.title.toLowerCase().includes(input.toLowerCase()) || 
-               emoji.keywords.includes(input.toLowerCase())
-      )
-    })
-    setItems(filtered)
-  }
+  
 
 
   if (error) {
@@ -54,8 +48,15 @@ const App: React.FC = () => {
   } else {
     return (
       <div className="wrapper">
-        <EmojiSearch input='input' onChange={updateInput}></EmojiSearch>
-        <EmojiContainer emojiList={items}></EmojiContainer>
+
+        
+        <div className="search-bar">
+          <input type="text" value={title} placeholder="Enter Post Title" className="input-search" onChange={(e) => {setTitle(e.target.value); console.log(e.target.value)}}/>   
+        </div>
+
+
+        {/* <EmojiSearch input='input' onChange={updateInput}></EmojiSearch> */}
+        <EmojiContainer title={title} emojiList={items}></EmojiContainer>
         
       </div>
     );

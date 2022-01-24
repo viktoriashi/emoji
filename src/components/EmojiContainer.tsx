@@ -4,19 +4,25 @@ import {IEmoji} from '../App'
 
 
 interface EmojiContainerProps {
+    title: string
     emojiList: Array<IEmoji>
 }
 
-const EmojiContainer: React.FC<EmojiContainerProps> = ({emojiList}) => {
+const EmojiContainer: React.FC<EmojiContainerProps> = ({title, emojiList}) => {
     
+    
+
     return (
         <ul className="emoji-list">
-            {emojiList.slice(0,15).map( item => {
+            {emojiList.filter(emoji => {
+                return ( emoji.title.toLowerCase().includes(title.toLowerCase()) || 
+                           emoji.keywords.includes(title.toLowerCase())
+                )
+            }).slice(0,15).map( item => {
                 return (
                     <div key={item.title}>
                         <EmojiRow emoji={item}></EmojiRow>
                     </div>
-                    
                 )       
             })}
         </ul>
