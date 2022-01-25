@@ -1,9 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import EmojiSearch from './components/EmojiSearch';
 import { useEffect, useState } from 'react';
-import { render } from "react-dom";
 import EmojiContainer from './components/EmojiContainer';
+import DropdownRows from './components/DropdownRows';
 
 
 export interface IEmoji {
@@ -14,19 +13,18 @@ export interface IEmoji {
 
 const App: React.FC = () => {
 
-  const [title, setTitle] = useState<string>('')
-
-
+  const [input, setInput] = useState<string>('')
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState<IEmoji[]>([]);
+  const [dropdown, setDropdown] = useState<number>()
+
       
   useEffect(() => {
     fetch("https://raw.githubusercontent.com/asimonok/10-js-pro-course/lesson/38/lessons/38/emojiList.json")
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(result);
           setIsLoaded(true);
           setItems(result);
         },
@@ -38,10 +36,13 @@ const App: React.FC = () => {
   }, [])
 
 
-  function roma(inputTitle: string) {
-    setTitle(inputTitle)
+  function changeInput(inputTitle: string) {
+    setInput(inputTitle)
   }
 
+  function changeRowsNumber(dropdown: number) {
+    setDropdown(dropdown)
+  }
 
   if (error) {
     return <div>Ошибка</div>;
@@ -49,14 +50,12 @@ const App: React.FC = () => {
     return <div>Загрузка...</div>;
   } else {
     return (
-      <div className="wrapper">
-
-        
-        <EmojiSearch input={title} onChangeInput={roma}></EmojiSearch>
-        
-        {/* <EmojiSearch input='input' onChange={updateInput}></EmojiSearch> */}
-        <EmojiContainer title={title} emojiList={items}></EmojiContainer>
-        
+      <div className="wrapper">    
+        <div className='emoji-container'>
+          <EmojiSearch input={input} onChangeInput={changeInput}></EmojiSearch>
+          <EmojiContainer title={input} emojiList={items} dropdown={dropdown}></EmojiContainer>
+        </div>
+        <DropdownRows onChangeRowsNumber={changeRowsNumber}></DropdownRows>
       </div>
     );
   

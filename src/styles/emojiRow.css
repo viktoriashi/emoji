@@ -1,0 +1,9 @@
+.emoji-item {
+    border-top: 1px solid lightgrey;
+    list-style-type: none;
+  
+    font-size: 1.3rem;
+  
+    padding: 3%;
+    cursor: pointer;
+  }

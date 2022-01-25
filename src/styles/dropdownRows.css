@@ -1,0 +1,37 @@
+.dropdown-menu {
+    float: right;
+    margin: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    width : 120px; 
+
+    border: 2px solid lightgrey;
+    border-radius: 5px;  
+    cursor: pointer;  
+  }
+  
+  .dropdown-menu__text {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.4rem;
+    margin: 10% 6%;
+  }
+  
+  .dropdown-menu__slide {
+    width:100%;
+    margin: 0;
+    padding: 0px;
+    list-style-type: none;
+  }
+  
+  .dropdown-menu__options {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 3px;
+  }
+  
+  .dropdown-menu__button {
+    padding: 3px;
+    margin: 3px;
+  }

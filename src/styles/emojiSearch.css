@@ -1,0 +1,21 @@
+.search-bar {
+    float: left;
+    margin: 10px;
+  }
+  
+  .input-search {
+    width: 95%;
+    height: 40px;
+    padding: 5px;
+    margin-left: 2%;
+  
+    font-size: 1.2rem;
+    
+    border-color: blue;
+    border-radius: 5px;
+  }
+  
+  .input-search:hover {
+    border-color: blue;
+  }
+  
