@@ -29,18 +29,23 @@ const DropdownRows: React.FC<DropdownRowsProps> = ({onChangeRowsNumber}) => {
 
     const [open, setOpen] = useState<boolean>(false)
 
+    function chooseRowsLimit(value: number) {
+        onChangeRowsNumber(value)
+        setOpen(false)
+    }
+
     return (
         <div className="dropdown-menu">
-            <a className="dropdown-menu__text" onClick={() => setOpen(!open)}>
+            <button className="dropdown-menu__text" onClick={() => setOpen(!open)}>
                 Rows limit
-            </a>
+            </button>
             <ul className="dropdown-menu__slide">
                 { open && 
                     rowsAmount.options.map(option => {
                         return (
                             <li key={option.id} className="dropdown-menu__options">
                                 <button 
-                                    className="dropdown-menu__button" onClick={() => onChangeRowsNumber(option.value)}>{option.value}
+                                    className="dropdown-menu__button" onClick={() => chooseRowsLimit(option.value)}>{option.value}
                                 </button>
                             </li>
                         )
